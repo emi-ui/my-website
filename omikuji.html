@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おみくじ</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #fff9f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container::before,
+        .container::after {
+            content: '❀';
+            position: absolute;
+            font-size: 24px;
+            color: #ffb7c5;
+        }
+
+        .container::before {
+            top: 15px;
+            left: 15px;
+        }
+
+        .container::after {
+            bottom: 15px;
+            right: 15px;
+        }
+
+        h1 {
+            color: #ff85a2;
+            margin-bottom: 30px;
+            font-size: 32px;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 2px;
+            background-color: #ffcad4;
+            bottom: -10px;
+            left: 20%;
+        }
+
+        #result {
+            font-size: 50px;
+            margin: 30px 0 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        #comment {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+            font-weight: 400;
+            line-height: 1.5;
+            padding: 0 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff85a2, #ffb7c5);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 3px 10px rgba(255, 133, 162, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.5);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✿ おみくじ ✿</h1>
+        <div id="result"></div>
+        <div id="comment"></div>
+        <button id="drawButton">おみくじを引く</button>
+    </div>
+
+    <script>
+        document.getElementById('drawButton').addEventListener('click', function() {
+            const fortunes = ['大吉', '中吉', '小吉', '凶'];
+            const emojis = {
+                '大吉': '😸',
+                '中吉': '😽',
+                '小吉': '😺',
+                '凶': '😿'
+            };
+            const colors = {
+                '大吉': '#ff5252',
+                '中吉': '#ff9e22',
+                '小吉': '#5e92f3',
+                '凶': '#757575'
+            };
+            const comments = {
+                '大吉': '今日は最高の一日になりそうにゃん！',
+                '中吉': '良いことがありそうな予感にゃん！',
+                '小吉': '小さな幸せが見つかるかもにゃん！',
+                '凶': '慎重に行動した方がいいにゃん！'
+            };
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            const fortune = fortunes[randomIndex];
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = fortune + emojis[fortune];
+            resultElement.style.color = colors[fortune];
+            
+            document.getElementById('comment').textContent = comments[fortune];
+        });
+    </script>
+</body>
+</html> 
